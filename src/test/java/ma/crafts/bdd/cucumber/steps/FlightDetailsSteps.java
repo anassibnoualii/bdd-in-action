@@ -1,22 +1,26 @@
-package ma.crafts.cucumber.steps;
+package ma.crafts.bdd.cucumber.steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import ma.crafts.bdd.BddApplicationTests;
+import ma.crafts.bdd.cucumber.http.RestClient;
 import ma.crafts.bdd.model.Flight;
-import ma.crafts.bdd.service.FlightService;
-import ma.crafts.bdd.service.FlightServiceImpl;
 import org.assertj.core.api.Assertions;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Map;
 
-public class FlightDetailsSteps {
+import static ma.crafts.bdd.cucumber.utils.DataTransform.objectToClass;
+
+public class FlightDetailsSteps extends BddApplicationTests {
     private String flightNumber;
     private Flight flight;
-    private FlightService flightService = new FlightServiceImpl();
 
+    @Autowired
+    private RestClient restClient;
 
     @Given("I need to know the details of flight number {string}")
     public void iNeedToKnowTheDetailsOfFlightNumberFH(String flightNumber) {
@@ -25,7 +29,7 @@ public class FlightDetailsSteps {
 
     @When("I request the details about this flight")
     public void iRequestTheDetailsAboutThisFlight() {
-        flight = flightService.findFlightByFlightNumber(flightNumber);
+        flight = objectToClass(restClient.getContent("/flights/" + flightNumber).getBody(), Flight.class);
     }
 
     @Then("I should receive the following:$")

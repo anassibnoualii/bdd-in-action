@@ -1,5 +1,7 @@
 package ma.crafts.bdd.service;
 
+import ma.crafts.bdd.model.Route;
+
 public interface EarningService {
-    int calculate(int distance);
+    long calculate(Route route);
 }

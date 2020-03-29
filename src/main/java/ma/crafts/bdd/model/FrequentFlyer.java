@@ -48,6 +48,9 @@ public class FrequentFlyer {
         this.statusPoints = statusPoints;
     }
 
+    public void addExtraPoints(int points) {
+        this.statusPoints = this.statusPoints + points;
+    }
 
     public static final class Builder {
         private String frequentFlyerNumber;
