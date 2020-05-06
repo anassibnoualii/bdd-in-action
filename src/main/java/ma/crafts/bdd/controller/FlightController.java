@@ -1,5 +1,6 @@
 package ma.crafts.bdd.controller;
 
+import ma.crafts.bdd.dto.FlightDto;
 import ma.crafts.bdd.model.Flight;
 import ma.crafts.bdd.model.Route;
 import ma.crafts.bdd.service.EarningService;
@@ -18,7 +19,7 @@ public class FlightController {
     private EarningService earningService = new EarningServiceImpl();
 
     @GetMapping("/{flightNumber}")
-    ResponseEntity<Flight> findFlightByFlightNumber(@PathVariable("flightNumber") String flightNumber) {
+    ResponseEntity<FlightDto> findFlightByFlightNumber(@PathVariable("flightNumber") String flightNumber) {
         return new ResponseEntity<>(flightService.findFlightByFlightNumber(flightNumber), HttpStatus.OK);
     }
 

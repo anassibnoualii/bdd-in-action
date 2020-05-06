@@ -1,5 +1,7 @@
 package ma.crafts.bdd.service;
 
+import ma.crafts.bdd.dto.FlightDto;
+import ma.crafts.bdd.mapper.FlightToFlightDto;
 import ma.crafts.bdd.model.Airport;
 import ma.crafts.bdd.model.Flight;
 
@@ -9,10 +11,12 @@ import java.util.Objects;
 
 public class FlightServiceImpl implements FlightService {
     @Override
-    public Flight findFlightByFlightNumber(String flightNumber) {
+    public FlightDto findFlightByFlightNumber(String flightNumber) {
         return flights.stream()
                 .filter(flight -> Objects.equals(flightNumber,flight.getFlightNumber()))
-                .findFirst().orElse(null);
+                .map(FlightToFlightDto.INSTANCE)
+                .findFirst()
+                .orElse(null);
     }
     List<Flight> flights = Arrays.asList(
             new Flight.Builder()
