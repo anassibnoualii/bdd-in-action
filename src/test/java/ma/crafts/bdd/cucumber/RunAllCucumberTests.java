@@ -6,8 +6,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "classpath:cucumber",
-        glue = "ma.crafts.bdd.cucumber.steps",
         strict = true,
-        plugin = { "de.monochromata.cucumber.report.PrettyReports:target/cucumber" })
+        plugin = {"de.monochromata.cucumber.report.PrettyReports:target/cucumber"})
 public class RunAllCucumberTests {
 }
