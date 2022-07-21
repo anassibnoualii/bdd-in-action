@@ -8,5 +8,5 @@ Feature: Earning Frequent Flyer points from flights
   Normal flights earn 1 point every 2 kilometers
     Given the flying distance between 'SYD' and 'MEL' is 878 km
     And I am a standard Frequent Flyer member
-    When I fly from Sydney to Melbourne on '10/10/2014'
+    When I fly from Sydney to Melbourne on '10/10/2022'
     Then I should earn 439 points
